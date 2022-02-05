@@ -3,20 +3,16 @@ import styles from "./Signup.module.css"
 
 const Signup = () => {
     const [registrationObj, setRegistrationObj] = useState({ email: "", username: "", password: "", confirm_password: "" });
-    const [alert, setAlert] = useState(null)
+
     const handleFormInputChange = (e) => {
         setRegistrationObj({ ...registrationObj, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (registrationObj.password === registrationObj.confirm_password) {
 
-            console.log(registrationObj)
-        } else {
-            setAlert("Passwords must match!")
-            setTimeout(() => setAlert(null), 3000)
-        }
+        console.log(registrationObj)
+
     }
     return (
         <form className={styles.signup_form}>
@@ -33,10 +29,6 @@ const Signup = () => {
             <label>
                 <span>password:</span>
                 <input name="password" value={registrationObj.password} onChange={handleFormInputChange} type="password" />
-            </label>
-            <label>
-                <span>confirm password:</span>
-                <input name="confirm_password" value={registrationObj.confirm_password} onChange={handleFormInputChange} type="password" />
             </label>
             <button className="btn" onClick={handleSubmit}>Signup</button>
         </form>
