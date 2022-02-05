@@ -1,0 +1,30 @@
+.navbar{
+    width: 100%;
+    background: #effaf0;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+
+.navbar_list{
+    display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
+    align-items: center;
+}
+
+.title{
+    margin-right: auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+
+.navbar_button, .navbar a{
+    margin-left: 16px;
+}
+
+.navbar a, .navbar li{
+    color: #333;
+    text-decoration: none;
+    list-style-type: none;
+}
