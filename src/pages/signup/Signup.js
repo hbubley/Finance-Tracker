@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from "./Signup.module.css"
 
 const Signup = () => {
-    const [registrationObj, setRegistrationObj] = useState({ email: "", username: "", password: "", confirm_password: "" });
+    const [registrationObj, setRegistrationObj] = useState({ email: "", username: "", password: "" });
 
     const handleFormInputChange = (e) => {
         setRegistrationObj({ ...registrationObj, [e.target.name]: e.target.value })
