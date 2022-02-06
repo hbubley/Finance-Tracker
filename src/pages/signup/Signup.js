@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from "./Signup.module.css"
 
 const Signup = () => {
-    const [registrationObj, setRegistrationObj] = useState({ email: "", username: "", password: "" });
+    const [registrationObj, setRegistrationObj] = useState({ email: "", displayName: "", password: "" });
 
     const handleFormInputChange = (e) => {
         setRegistrationObj({ ...registrationObj, [e.target.name]: e.target.value })
@@ -23,8 +23,8 @@ const Signup = () => {
                 <input name="email" value={registrationObj.email} onChange={handleFormInputChange} type="email" />
             </label>
             <label>
-                <span>username:</span>
-                <input name="username" value={registrationObj.username} onChange={handleFormInputChange} type="email" />
+                <span>display name:</span>
+                <input name="displayName" value={registrationObj.displayName} onChange={handleFormInputChange} type="email" />
             </label>
             <label>
                 <span>password:</span>
