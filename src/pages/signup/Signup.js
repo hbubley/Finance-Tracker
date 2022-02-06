@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import Error from '../../components/error/Error';
+import { useSignup } from '../../hooks/useSignup';
 import styles from "./Signup.module.css"
 
 const Signup = () => {
     const [registrationObj, setRegistrationObj] = useState({ email: "", displayName: "", password: "" });
-
+    const { signup, error, isPending } = useSignup();
     const handleFormInputChange = (e) => {
         setRegistrationObj({ ...registrationObj, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        signup(registrationObj)
         console.log(registrationObj)
 
     }
@@ -30,7 +32,8 @@ const Signup = () => {
                 <span>password:</span>
                 <input name="password" value={registrationObj.password} onChange={handleFormInputChange} type="password" />
             </label>
-            <button className="btn" onClick={handleSubmit}>Signup</button>
+            <button className="btn" disabled={isPending} onClick={handleSubmit}>{isPending ? "Submitting" : "Submit"}</button>
+            {error && <Error error={error} />}
         </form>
     );
 };
