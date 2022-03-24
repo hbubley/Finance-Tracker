@@ -15,13 +15,14 @@ export const useSignup = () => {
         setIsPending(true);
 
         try {
-            const res = await createUserWithEmailAndPassword(projectAuth, email, password)
+            const auth = getAuth()
+            const res = await createUserWithEmailAndPassword(auth, email, password);
 
             if (!res) {
                 throw new Error("Could not complete signup")
             }
 
-            await updateProfile(projectAuth.currentUser, { displayName });
+            await updateProfile(auth.currentUser, { displayName });
             if (!isCancelled) {
                 dispatch({
                     type: LOGIN,
