@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import Error from '../../components/error/Error';
+import { useLogin } from '../../hooks/useLogin';
 import styles from './Login.module.css'
 
 const Login = () => {
     const [loginObj, setLoginObj] = useState({ email: "", password: "" })
-
+    const {login, error} = useLogin();
     const handleFormInputChange = (e) => {
         setLoginObj({ ...loginObj, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(loginObj)
+        login(loginObj)
     }
 
     return (
@@ -25,6 +27,7 @@ const Login = () => {
                 <input name="password" value={loginObj.password} onChange={handleFormInputChange} type="password" />
             </label>
             <button className="btn" onClick={handleSubmit}>Login</button>
+            {error && <Error error={error} />}
         </form>
     );
 };
