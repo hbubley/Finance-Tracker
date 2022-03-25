@@ -6,7 +6,7 @@ const TransactionForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, amount)
+        console.log({name, amount})
     }
     return (
         <>
