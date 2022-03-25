@@ -5,7 +5,7 @@ import styles from './Login.module.css'
 
 const Login = () => {
     const [loginObj, setLoginObj] = useState({ email: "", password: "" })
-    const {login, error} = useLogin();
+    const {login, error, isPending} = useLogin();
     const handleFormInputChange = (e) => {
         setLoginObj({ ...loginObj, [e.target.name]: e.target.value })
     }
@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
         login(loginObj)
     }
-
+    const loginText = isPending ? "Submitting...": "Login"
     return (
         <form className={styles.login_form}>
             <h2>Login</h2>
@@ -26,7 +26,7 @@ const Login = () => {
                 <span>password:</span>
                 <input name="password" value={loginObj.password} onChange={handleFormInputChange} type="password" />
             </label>
-            <button className="btn" onClick={handleSubmit}>Login</button>
+            <button className="btn" onClick={handleSubmit}>{loginText}</button>
             {error && <Error error={error} />}
         </form>
     );
