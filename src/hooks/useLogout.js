@@ -13,11 +13,9 @@ export const useLogout = () => {
     const logout = async () => {
         setError(null);
         setIsPending(true);
-        //sign user out
         try {
             const auth = getAuth();
-            await signOut(auth);
-
+            signOut(auth);
             if (!isCancelled) {
                 setIsPending(false);
                 dispatch({ type: LOGOUT })
