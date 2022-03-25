@@ -1,4 +1,4 @@
-import { Outlet, ReactLocation, Router } from 'react-location';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import { useAuthContext } from './hooks/useAuthContext';
@@ -6,23 +6,24 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 
-const location = new ReactLocation();
 function App() {
-  const {authIsReady} = useAuthContext()
-  const routes = [
-    { path: "/", element: <Home /> },
-    { path: "/login", element: <Login /> },
-    { path: "/signup", element: <Signup /> },
-  ]
-
-  if(!authIsReady) return <p>Loading...</p>
+  const { authIsReady, user } = useAuthContext()
+  const homeViewAuth = user ? <Home /> : <Navigate to="/login" />
+  const loginViewAuth = user ? <Navigate to="/" /> : <Login />
+  const signupViewAuth = user ? <Navigate to="/" /> : <Signup />
+  if (!authIsReady) return <p>Loading...</p>
   return (
-    <Router location={location} routes={routes}>
+    <Router>
       <div className="App">
         <Navbar />
       </div>
-      <Outlet />
-    </Router>
+      <Routes>
+        <Route path="/" element={homeViewAuth} exact />
+        <Route path="/login" element={loginViewAuth}
+        />
+        <Route path="/signup" element={signupViewAuth} />
+      </Routes>
+    </Router >
   );
 }
 

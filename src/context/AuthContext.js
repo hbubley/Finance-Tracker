@@ -35,12 +35,14 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect(() => {
         const auth = getAuth()
-
+        let isCancelled = false;
         const unsub = onAuthStateChanged(auth, (user) => {
-            dispatch({ type: AUTH_IS_READY, payload: user })
+            if (!isCancelled) {
+                dispatch({ type: AUTH_IS_READY, payload: user })
+            }
             unsub()
         })
-
+        return () => isCancelled = true
     }, [])
     console.log('AuthContext State: ', state)
     return (
