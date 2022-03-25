@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import 'firebase/firestore';
-import {getAuth} from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+
 const firebaseConfig = {
     apiKey: "AIzaSyBX1cDkBNmFjkvkj6BpHWuxdAZAhbJB9a0",
     authDomain: "finance-tracker-8d121.firebaseapp.com",
@@ -12,7 +13,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const projectFirestore = initializeApp(firebaseConfig);
+const db = getFirestore(projectFirestore);
 
-const projectAuth = getAuth()
 
-export { projectFirestore, projectAuth }
+export { projectFirestore }
